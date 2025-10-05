@@ -16,17 +16,28 @@
 		(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
 		var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
 		j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})
-		(window,document,'script','_gtmDataLayer','GTM-542MMSL');</script></head>
-		<style>
-			/* Taille du logo uniquement */
-			.logo-image .wnd-logo-img{
-				height: clamp(40px, 6vw, 60px) !important; /* 40–60px selon l’écran */
-				width: auto !important;                    /* respecte les proportions */
-				max-width: none !important;                 /* ignore l’attribut width du HTML */
-				object-fit: contain;
-				display: block;
-			}
-	</style>
+		(window,document,'script','_gtmDataLayer','GTM-542MMSL');</script>
+			<style>
+				/* Cible UNIQUEMENT le logo en haut */
+				#wnd_LogoBlock_200058313 .b-l-image-w.logo-image-cell { 
+					padding-top: 0 !important;           /* annule le ratio forcé */
+					height: auto !important;
+				}
+				#wnd_LogoBlock_200058313 .wnd-logo-img{
+					height: 60px !important;             /* ajuste ici la hauteur souhaitée */
+					width: auto !important;
+					max-height: none !important;
+					max-width: none !important;
+					object-fit: contain;
+					display: block;
+				}
+				/* petit écran (optionnel) */
+				@media (max-width:640px){
+					#wnd_LogoBlock_200058313 .wnd-logo-img{ height: 42px !important; }
+				}
+			</style>
+
+		</head>
 
 <body class="l wt-home ac-s ac-n l-default l-d-none b-btn-sq b-btn-s-l b-btn-dso b-btn-bw-1 img-d-n img-t-u img-h-n line-solid b-e-ds lbox-l   wnd-free-bar-fixed  wnd-fe   wnd-eshop"><noscript>
 				<iframe
