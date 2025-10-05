@@ -18,172 +18,132 @@
 		j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})
 		(window,document,'script','_gtmDataLayer','GTM-542MMSL');</script></head>
 		<style>
-  /* ====== Tweaks généraux (sans changer le contenu) ====== */
-  html { scroll-behavior: smooth; }
-  body {
-    --mf-accent: #0f172a;        /* bleu nuit élégant */
-    --mf-accent-2: #1e293b;      /* nuance pour hover */
-    --mf-card-bg: #ffffff;
-    --mf-soft: rgba(2, 6, 23, .06);
-    --mf-soft-2: rgba(2, 6, 23, .12);
-    background-color: #f6f7fb;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
+			/* ----- SAFE TWEAKS: pas de changement de contenu, pas de layout cassé ----- */
 
-  /* Limiter la largeur utile et ajouter de l’air */
-  .sw, .sw-c, .s-w, .s-c {
-    max-width: 1200px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-  }
-  .s.s-basic .s-c { padding-top: 1.25rem; }
+			/* Lisibilité générale */
+			html { scroll-behavior: smooth; }
+			body {
+				-webkit-font-smoothing: antialiased;
+				-moz-osx-font-smoothing: grayscale;
+				text-rendering: optimizeLegibility;
+				background: #f7f8fb;
+			}
 
-  /* ====== Header / Logo / Menu ====== */
-  .h-w.h-f.wnd-fixed {
-    box-shadow: 0 10px 30px var(--mf-soft);
-    background: #fff;
-  }
-  .logo-image .wnd-logo-img {
-    height: 48px;               /* taille de logo propre */
-    width: auto;
-    object-fit: contain;
-  }
-  /* Meilleur espacement du menu */
-  #menu .level-1 > li > a.menu-item {
-    padding: .9rem 1rem;
-    border-radius: 10px;
-    transition: background .2s ease, color .2s ease, transform .08s ease;
-    font-weight: 600;
-  }
-  #menu .level-1 > li > a.menu-item:hover {
-    background: var(--mf-soft);
-    transform: translateY(-1px);
-  }
-  /* Indication de page active plus visible */
-  .level-1 > li.wnd-active > a.menu-item {
-    color: #fff !important;
-    background: var(--mf-accent) !important;
-  }
+			/* Largeur utile, sans toucher aux classes Webnode */
+			.sw, .sw-c, .s-w, .s-c {
+				max-width: 1200px;
+				margin-left: auto;
+				margin-right: auto;
+			}
 
-  /* ====== Titre de section ====== */
-  h1.wnd-align-center {
-    font-size: clamp(1.6rem, 2.5vw, 2.2rem);
-    line-height: 1.2;
-    letter-spacing: .2px;
-    color: var(--mf-accent);
-    margin-top: .5rem;
-    margin-bottom: 1rem;
-  }
+			/* Header plus lisible, sans “position” modifiée */
+			.h-w.h-f {
+				background: #fff;
+				box-shadow: 0 6px 18px rgba(0,0,0,.06);
+			}
+			.logo-image .wnd-logo-img {
+				height: 48px;
+				width: auto;
+				object-fit: contain;
+			}
 
-  /* ====== Grille produits (plus fluide + responsive) ====== */
-  /* on remplace la grille “grid-4” figée par une grille auto-fit */
-  .b-e-box {
-    display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
-    gap: 18px !important;
-  }
+			/* Menu: hover/actif discrets, sans changer la structure */
+			#menu .level-1 > li > a.menu-item {
+				padding: .9rem 1rem;
+				border-radius: 10px;
+				transition: background .2s ease, color .2s ease, transform .08s ease;
+				font-weight: 600;
+			}
+			#menu .level-1 > li > a.menu-item:hover {
+				background: rgba(2,6,23,.06);
+				transform: translateY(-1px);
+			}
+			.level-1 > li.wnd-active > a.menu-item {
+				color: #fff !important;
+				background: #0f172a !important; /* bleu nuit */
+			}
 
-  /* Carte produit soignée */
-  .b-e-box .item .item-wrapper {
-    background: var(--mf-card-bg);
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 8px 24px var(--mf-soft);
-    transition: transform .18s ease, box-shadow .18s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  }
-  .b-e-box .item .item-wrapper:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 34px var(--mf-soft-2);
-  }
+			/* Titre principal */
+			h1.wnd-align-center {
+				font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+				line-height: 1.2;
+				color: #0f172a;
+				margin-top: .5rem;
+				margin-bottom: 1rem;
+			}
 
-  /* Médias : ratio propre + image qui couvre */
-  .b-tb,
-  .item-media picture,
-  .item-media img {
-    display: block;
-    width: 100%;
-  }
-  .item-media .b-tb { aspect-ratio: 1 / 1; }          /* carré propre par défaut */
-  /* si paysage détecté par Webnode, on harmonise quand même la hauteur */
-  .wnd-orientation-landscape { aspect-ratio: 4 / 3; }
-  .wnd-orientation-portrait  { aspect-ratio: 3 / 4; }
-  .item-media img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover;
-  }
+			/* Cartes produits (on garde la grille Webnode telle quelle) */
+			.b-e-box .item .item-wrapper {
+				background: #fff;
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 8px 24px rgba(2,6,23,.06);
+				transition: transform .18s ease, box-shadow .18s ease;
+			}
+			.b-e-box .item .item-wrapper:hover {
+				transform: translateY(-3px);
+				box-shadow: 0 14px 34px rgba(2,6,23,.12);
+			}
 
-  /* En-tête carte (titre + prix) */
-  .item-head {
-    padding: 12px 14px 16px;
-    display: grid;
-    gap: 6px;
-  }
-  .item-title {
-    margin: 0;
-    font-size: 1rem;
-    line-height: 1.3;
-    color: #0b1220;
-    min-height: 2.6em;                /* éviter le “saut” entre cartes */
-  }
-  .item-price .prd-price {
-    font-weight: 800;
-    font-size: 1.05rem;
-    color: var(--mf-accent);
-  }
-  .item-labels { display: none; }     /* cache les badges vides et garde l’alignement */
+			/* Images: bord doux et anti-saut (sans forcer la hauteur) */
+			.item-media picture,
+			.item-media img {
+				display: block;
+				width: 100%;
+				height: auto;
+				border-radius: 0; /* gardons les bords nets dans la carte */
+			}
+			img[loading="lazy"] { contain: paint; }
 
-  /* Cart (panier) plus discret */
-  .cart .cart-content {
-    background: #fff;
-    border-radius: 12px;
-    padding: 6px 10px;
-    box-shadow: 0 6px 18px var(--mf-soft);
-  }
-  .cart .cart-price { font-weight: 700; }
+			/* En-tête de la carte */
+			.item-head {
+				padding: 12px 14px 16px;
+				display: grid;
+				gap: 6px;
+			}
+			.item-title {
+				margin: 0;
+				font-size: 1rem;
+				line-height: 1.3;
+				color: #0b1220;
+			}
+			.item-price .prd-price {
+				font-weight: 800;
+				font-size: 1.05rem;
+				color: #0f172a;
+			}
+			.item-labels .prd-label-c:empty { display: none; } /* cache uniquement les libellés vides */
 
-  /* ====== Footer plus net et lisible ====== */
-  footer .s-f {
-    background: #0b1220;
-    color: #e8ecf2;
-  }
-  footer .b-text h1, 
-  footer .b-text h2, 
-  footer .b-text h3, 
-  footer .b-text p,
-  footer a {
-    color: #e8ecf2 !important;
-  }
-  footer a:hover { text-decoration: underline; }
-  .s-f-ez .cw { row-gap: 18px; }
-  .s-f-ez .c {
-    padding: 10px;
-  }
+			/* Panier un peu plus propre */
+			.cart .cart-content {
+				background: #fff;
+				border-radius: 12px;
+				padding: 6px 10px;
+				box-shadow: 0 6px 18px rgba(2,6,23,.06);
+			}
+			.cart .cart-price { font-weight: 700; }
 
-  /* Petits écrans : meilleure lisibilité et grille fluide */
-  @media (max-width: 960px) {
-    #menu .level-1 > li > a.menu-item { padding: .8rem .9rem; }
-    .b-e-box { gap: 14px !important; }
-  }
-  @media (max-width: 640px) {
-    .logo-image .wnd-logo-img { height: 40px; }
-    .s.s-basic .s-c { padding-left: 14px; padding-right: 14px; }
-    .b-e-box { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)) !important; }
-    .item-head { padding: 10px 12px 14px; }
-  }
+			/* Footer foncé lisible, sans toucher à la structure */
+			footer .s-f {
+				background: #0b1220;
+				color: #e8ecf2;
+			}
+			footer .b-text h1, 
+			footer .b-text h2, 
+			footer .b-text h3, 
+			footer .b-text p,
+			footer a { color: #e8ecf2 !important; }
+			footer a:hover { text-decoration: underline; }
 
-  /* ====== Petites finitions ====== */
-  /* coins arrondis homogènes sur toutes les images de la page */
-  img { border-radius: 12px; }
-  /* éviter l’effet “saut” des images qui se chargent */
-  img[loading="lazy"] { contain: paint; }
-</style>
+			/* Petits écrans: uniquement des espacements */
+			@media (max-width: 640px) {
+				.logo-image .wnd-logo-img { height: 40px; }
+				.s.s-basic .s-c { padding-left: 14px; padding-right: 14px; }
+				.item-head { padding: 10px 12px 14px; }
+			}
+			</style>
 
+		
 <body class="l wt-home ac-s ac-n l-default l-d-none b-btn-sq b-btn-s-l b-btn-dso b-btn-bw-1 img-d-n img-t-u img-h-n line-solid b-e-ds lbox-l   wnd-free-bar-fixed  wnd-fe   wnd-eshop"><noscript>
 				<iframe
 				 src="https://www.googletagmanager.com/ns.html?id=GTM-542MMSL"
